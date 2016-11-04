@@ -1,0 +1,37 @@
+" self-defined
+
+syntax on
+filetype plugin indent on
+
+set nocompatible
+set nu
+set showmode
+set autoindent
+
+set fo-=c fo-=r fo-=o
+
+let mapleader = "\<Space>"
+nnoremap <leader>ev :vs $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" pathgen
+execute pathogen#infect()
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" delimitMate
+inoremap <leader>oo <CR><esc>O<Space><Space>
+nnoremap <leader>oo i<CR><esc>O<Space><Space>
+
+" NERD Tree
+" autocmd vimenter * NERDTree
+nnoremap <leader>t :NERDTreeToggle<CR>
+
