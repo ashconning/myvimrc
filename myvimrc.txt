@@ -8,6 +8,10 @@ set nu
 set showmode
 set autoindent
 
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+
 set fo-=c fo-=r fo-=o
 
 let mapleader = "\<Space>"
@@ -28,8 +32,23 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " delimitMate
-inoremap <leader>oo <CR><esc>O<Space><Space>
-nnoremap <leader>oo i<CR><esc>O<Space><Space>
+" inoremap <leader>oo <CR><esc>O<Space><Space>
+" nnoremap <leader>oo i<CR><esc>O<Space><Space>
+
+" BreakLine: Return TRUE if in the middle of {} or () in INSERT mode
+fun BreakLine()
+  if (mode() == 'i')
+    return ((getline(".")[col(".")-2] == '{' && getline(".")[col(".")-1] == '}') ||
+         \(getline(".")[col(".")-2] == '(' && getline(".")[col(".")-1] == ')'))
+  else
+    return 0
+  endif
+endfun
+
+" Remap <Enter> to split the line and insert a new line in between if
+" BreakLine return True
+inoremap <expr> <CR> BreakLine() ? "<CR><ESC>O" : "<CR>"
+
 
 " NERD Tree
 " autocmd vimenter * NERDTree
