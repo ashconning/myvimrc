@@ -54,3 +54,9 @@ inoremap <expr> <CR> BreakLine() ? "<CR><ESC>O" : "<CR>"
 " autocmd vimenter * NERDTree
 nnoremap <leader>t :NERDTreeToggle<CR>
 
+" vim-colors-solarized
+syntax enable
+set background=dark
+" set background=light
+let g:solarized_termcolors=256
+colorscheme solarized
